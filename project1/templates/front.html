@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Booksmate</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel='stylesheet' href='../static/style.css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">The Booksmate</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto text-right">
+            <li class="nav-item active">
+                <a class="nav-link" href="/front">Search <span class="sr-only">(current)</span></a>
+              </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="btn btn-success my-2 my-sm-0" type="button" onclick="window.location.href='/logout';" value="Log Out" />
+          </form>
+        </div>
+      </nav>
+</div>
+
+      
+<div>
+    {% if name %}
+    <h1 style="text-align: center;padding-top: 70px;color: white; font-size: 80px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Welcome, {{name | safe}}! </h1>
+    {% endif %}
+</div>
+
+<div class="form-group" style="width: 500px;margin: 0 auto; padding-top: 100px;">
+    <form action="/search" method="POST">
+      <input type="text" class="form-control" id="usr" name='result' placeholder="Search for ID, Author, Title or Year" style="width: 500px; margin-top: 10px;">
+      
+    <button type="submit" class="btn btn-light" style="margin-top: 10px; margin-left: 200px;">Search</button>
+    {% if message %}
+      <p class="text-center" style="color: red; padding-top: 10px;">{{ message | safe}} </p>
+    {% endif %}
+    </form>
+</div>
+
+</body>
+</html>

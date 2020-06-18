@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Booksmate</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel='stylesheet' href='../static/style.css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">The Booksmate</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto text-right">
+            <li class="nav-item active">
+                <a class="nav-link" href="/front">Search <span class="sr-only">(current)</span></a>
+              </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="btn btn-success my-2 my-sm-0" type="button" onclick="window.location.href='/logout';" value="Log Out" />
+          </form>
+        </div>
+      </nav>
+</div>
+
+<div class='container'>
+    <div class='row'>
+        <div class="col-md 6" >
+            <h1 style="margin-top: 20px;" class="text-light">{{data.title}}</h1>            
+            <hr>
+            <ul class="list-group text-light">
+                <li>Author: {{data.author}}</li>
+                <li>Published: {{data.year}}</li>
+                <li>ISBN: {{data.isbn}}</li>
+                <li>Average Rating: {{average_rating}}</li>
+                <li>Number of Ratings: {{work_ratings_count}}</li>
+            </ul>
+        </div>
+        <div class="col-md 6">
+            <h1 style="margin-top: 20px;" class="text-light">How was your read?</h1>
+            <hr>
+            <form action="{{url_for('book',isbn=data.isbn)}}" method="POST">
+                <div class="form-group">
+                  <label for="rating" class="text-light">Your Rating:</label>
+                  <select class="form-control" name="rating" id="rate">
+                    <option selected value disabled>Select Rating</option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="review" class="text-light">Have any Comments?</label>
+                  <textarea name="review" class="form-control" id="review" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-light" style="margin-top: 10px; margin-left: 200px;">Submit</button>
+                {% if message %}
+                    <p class="text-center" style="color: red; padding-right: 60px;">{{ message | safe}} </p>
+                {% endif %}
+              </form>
+        </div>
+    </div>
+</div>
+<hr>
+
+<div class="container">
+    <h1 style="margin-top: 20px;" class="text-light">Reviews</h1>
+    <hr>
+    <div class="col-md 3">
+    {% if reviews != None %}
+    {% for x in reviews %}
+    <div class='my-3 ' style="border: 2px solid black;">
+        <h4 style="padding: 10px;"><Span style="font-weight: bold;font">{{x.username}} </Span>has rated this book {{x.rating}} out of 5</h4>
+        <h5 style="padding-left: 10px;">{{x.review}}</h5>
+        <footer class="blockquote-footer text-right" style="font-size: large; padding: 10px;">{{x.username}}</footer>
+</div>
+    {% endfor %}
+    {% endif %}
+</div>
+</div>
+
+
+</body>
+</html>

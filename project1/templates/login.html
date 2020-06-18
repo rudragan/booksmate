@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>The Booksmate</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='../static/style.css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h1 class="text-right text-light" id='head'>Welcome to The Booksmate!</h1>
+  <h3 class="text-light text-right">Introducing to you Booksmate, an online book reviewing website.</h3>
+</div>
+
+
+
+
+<div class="ram">
+    <h4 class="text-right text-gray" style="text-decoration: underline; padding-right: 190px;">Sign In</h4>
+    <form style="float: right;" action="/login" method="POST">
+      <label class="text-gray" style="font-weight: bold;margin-top: 5px;">Username</label>
+      <input class="form-group" type="text" name="username"><br />
+      <label class="text-gray"  style="font-weight: bold;margin-top: 5px;" >Password</label>
+      <input class="form-group"  type="password" name="password"><br />
+
+      <button type="submit" style="margin-top: 10px;"class="btn btn-light">Log In</button>
+      {% if message %}
+      <p class="text-right" style="color: red; padding-right: 60px;">{{ message | safe}} </p>
+      {% endif %}
+    <p class="text-dark text-right" style="padding: 10px;">Not a member yet?<a href='/register'> Register Now!</a></p>
+
+    </form>
+</div>   
+
+
+
+</body>
+</html>
+
+
+

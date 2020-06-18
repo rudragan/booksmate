@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>
+            Register | The Booksmate
+        </title>
+        <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='../static/style.css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <h1 style="color: azure;text-align: center;">Be a part of the community</h1><br>
+        <h2 style="color: azure;text-decoration: underline;text-align: center;">Register Now</h1><br>
+        {% if text %}
+            <h3 style="text-align: center;color:green; ">{{ text | safe}} </h3>
+        {% endif %}
+            <div class="ram">
+                <form action="/register" method="POST" style="width: 500px;margin: 0 auto;padding-left: 200px;">
+                  <label style="color: azure;font-weight: bold;margin-top: 5px;">Name</label>
+                  <input class="form-group" type="text" name="name"><br />
+                  <label style="color: azure;font-weight: bold;margin-top: 5px;">Username</label>
+                  <input class="form-group" type="text" name="username"><br />
+                  <label style="color: azure;font-weight: bold;margin-top: 5px;" >Password</label>
+                  <input class="form-group" type="password" name="password"><br />
+                  <label style="color: azure;font-weight: bold;margin-top: 5px;" >Confirm Password</label>
+                  <input class="form-group" type="password" name="confirm"><br />
+            
+                  <button type="sumbit" style="margin-top: 10px;"class="btn btn-light">Register</button>
+                  {% if message %}
+                    <p class="text-right" style="color: red; padding-right: 60px;">{{ message | safe}} </p>
+                  {% endif %}
+             
+                <p class="text-dark text-center" style="padding: 10px;">Go back to<a href='/'> Login</a></p>
+            
+                </form>
+            </div>   
+    </body>
+</html>

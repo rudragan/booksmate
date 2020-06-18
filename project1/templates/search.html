@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Booksmate</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel='stylesheet' href='../static/style.css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body style="background-image: url('../static/search.jpg');">
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">The Booksmate</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto text-right">
+            <li class="nav-item active">
+                <a class="nav-link" href="/front">Search <span class="sr-only">(current)</span></a>
+              </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="btn btn-success my-2 my-sm-0" type="button" onclick="window.location.href='/logout';" value="Log Out" />
+          </form>
+        </div>
+      </nav>
+</div>
+
+      
+<div class="container">
+    {% if result %}
+        <h1 class="text-light" style="font-size: 50px; margin-top: 20px;">You searched for <span class="text-capitalize" style="color: darkgray;">{{ result | safe }}</span></h1>
+    {% endif %}
+    <div style="height: 20px;"></div>
+    <hr>
+    <h3 class="text-light">Here are your results:</h3>
+    
+</div>
+
+<hr>
+
+
+        <div class="container">
+          <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Year</th>
+              </tr>
+            </thead>
+       {% for book in books %}     
+       <tbody>
+              <tr>
+                <th scope="row" class="text-light"><a href="/book/{{book['isbn']}}">{{book['isbn']}}</a></th>
+                <td class="text-light">{{book['title']}}</td>
+                <td class="text-light">{{book['author']}}</td>
+                <td class="text-light">{{book['year']}}</td>
+              </tr>
+            </tbody> 
+      {% endfor %}
+          </table>     
+       </div>
+   
+
+</body>
+</html>
